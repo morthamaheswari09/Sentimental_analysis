@@ -62,4 +62,17 @@ if st.button("Predict Sentiment"):
         try:
             prediction = model.predict(vectorized)
             label = np.argmax(prediction)
-        except Exception a
+        except Exception as e:
+            st.error(f"Prediction failed: {e}")
+            st.stop()
+
+        st.subheader("Prediction Result")
+        if label == 2:
+            st.success("😊 Positive")
+        elif label == 1:
+            st.info("😐 Neutral")
+        else:
+            st.error("😞 Negative")
+
+st.markdown("---")
+st.markdown("Built with ❤️ using **TensorFlow & Streamlit**")
